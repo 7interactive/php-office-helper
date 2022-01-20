@@ -1,0 +1,24 @@
+{
+    "name": "7interactive/php-office-helper",
+    "description": "Helper package for handling creation of Office files",
+    "type": "library",
+    "require": {
+        "php": ">=7.3",
+        "phpoffice/phpspreadsheet": "^1.21",
+        "nette/di": "^3.0",
+        "nette/utils": "^3.2"
+    },
+    "autoload": {
+        "classmap": [
+            "src/"
+        ]
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "janondracek1",
+            "email": "jan.ondracek1@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable"
+}

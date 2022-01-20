@@ -1,0 +1,3 @@
+services:
+    - SevenInteractive\OfficeHelper\DocumentHelper
+    - SevenInteractive\OfficeHelper\DocumentFactory(%folder%)
