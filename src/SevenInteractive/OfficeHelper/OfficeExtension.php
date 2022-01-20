@@ -20,10 +20,9 @@ class OfficeExtension extends CompilerExtension
 
     public function loadConfiguration()
     {
-        // load the configuration file for the extension
-        $this->compiler->loadDefinitionsFromConfig(
-            $this->loadFromFile('config/config.neon')['services']
-		);
+        $builder = $this->getContainerBuilder();
+        $builder->addDefinition($this->prefix('officeHelper'))
+            ->setFactory(DocumentFactory::class, [$this->config->folder]);
     }
 
 }
