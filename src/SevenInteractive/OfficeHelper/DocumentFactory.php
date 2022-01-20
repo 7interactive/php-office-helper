@@ -5,26 +5,16 @@ namespace SevenInteractive\OfficeHelper;
 use Nette\DI\Container;
 use Nette\InvalidStateException;
 use Nette\Utils\FileSystem;
-use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 
 class DocumentFactory
 {
 
-    /** @var string */
-    protected $folder;
-    /** @var Container */
-    protected $container;
-
-    /**
-     * DocumentFactory constructor.
-     * @param Container $container
-     */
-    public function __construct(string $folder, Container $container)
+    public function __construct(
+        protected string $folder,
+        protected Container $container)
     {
-        $this->folder = $folder;
         $this->createDirIfNotExists($folder);
-        $this->container = $container;
     }
 
     public function createDirIfNotExists(string $folder): void
@@ -43,12 +33,10 @@ class DocumentFactory
 
     public function save(BaseDocument $baseDocument): string
     {
-        switch (true){
-            case $baseDocument instanceof BaseExcelDocument:
-                return $this->saveXlsx($baseDocument);
-            default:
-                throw new InvalidStateException(__METHOD__.'() - unimplemented type '.get_class($baseDocument));
-        }
+        return match(get_class($baseDocument)){
+            BaseExcelDocument::class => $this->saveXlsx($baseDocument),
+            default => throw new InvalidStateException(__METHOD__.'() - unimplemented type '.get_class($baseDocument)),
+        };
     }
 
     protected function saveXlsx(BaseExcelDocument $baseExcelDocument): string

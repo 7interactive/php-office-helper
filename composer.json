@@ -3,7 +3,7 @@
     "description": "Helper package for handling creation of Office files",
     "type": "library",
     "require": {
-        "php": ">=7.3",
+        "php": ">=8.0",
         "phpoffice/phpspreadsheet": "^1.21",
         "nette/di": "^3.0",
         "nette/utils": "^3.2"

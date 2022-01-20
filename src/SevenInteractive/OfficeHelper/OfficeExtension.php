@@ -18,7 +18,7 @@ class OfficeExtension extends CompilerExtension
         ]);
     }
 
-    public function loadConfiguration()
+    public function loadConfiguration(): void
     {
         $builder = $this->getContainerBuilder();
         $builder->addDefinition($this->prefix('officeHelper'))
