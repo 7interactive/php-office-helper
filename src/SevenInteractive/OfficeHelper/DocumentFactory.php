@@ -51,6 +51,15 @@ class DocumentFactory
         }
     }
 
+    public function saveAsString(BaseDocument $baseDocument): string
+    {
+        $filePath = $this->save($baseDocument);
+        $fileContent = file_get_contents($filePath);
+        unlink($filePath);
+
+        return $fileContent;
+    }
+
     protected function saveXlsx(BaseExcelDocument $baseExcelDocument): string
     {
         $spreadsheet = $baseExcelDocument->getSpreadsheet();
